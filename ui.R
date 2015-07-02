@@ -7,6 +7,7 @@ ui <- dashboardPage(skin = "green",
   dashboardSidebar(
     sidebarMenu(
       menuItem("点击效果", tabName = "点击效果", icon = icon("dashboard")),
+      menuItem("类目召回率", tabName = "类目召回率", icon = icon("dashboard")),
       menuItem("明细数据", tabName = "明细数据", icon = icon("th")),
       menuItem("人群差异", tabName = "人群差异", icon = icon("th")),
       menuItem("叶子分析", tabName = "叶子分析", icon = icon("th"))
@@ -41,6 +42,9 @@ ui <- dashboardPage(skin = "green",
                 )      
       ),
       # Second tab content
+      tabItem(tabName = "类目召回率",
+              box(width = 8, plotOutput("recallPlot"))
+              ),
       tabItem(tabName = "明细数据",
               box(width = 12, DT::dataTableOutput('datashow'))),
       tabItem(tabName = "人群差异",

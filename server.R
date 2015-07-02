@@ -43,7 +43,14 @@ server <- function(input, output) {
       geom_point(colour = 'red', size = 3) + geom_line(colour = "blue", size = 2)  + labs(x="date", y = NULL, family="Kaiti")
     
   })
+
+  output$recallPlot <- renderPlot({
+    recall_data[,'recall@N'] = sapply(strsplit(recall_data$typ,'@'), function(x) as.integer(x[2]))
+    ggplot(recall_data, aes(x=`recall@N`, y = recall ) ) + 
+      geom_point(colour = 'red', size = 3) + geom_line(colour = "blue", size = 2)  + labs(y="score")
+  })
   
+    
   #output$datashow <- renderDataTable({
   #  data
   #},options = list(aLengthMenu = c(5, 30, 50), iDisplayLength = 5))
